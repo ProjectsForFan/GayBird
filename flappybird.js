@@ -150,6 +150,7 @@ function placePipes() {
         passed : false
     }
     pipeArray.push(bottomPipe);
+
 }
 
 function moveBird(e) {
