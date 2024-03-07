@@ -2,7 +2,7 @@
 //board
 let board;
 let boardWidth = 360;
-let boardHeight = 640;
+let boardHeight = 750;
 let context;
 
 //bird
@@ -63,6 +63,7 @@ window.onload = function() {
     requestAnimationFrame(update);
     setInterval(placePipes, 1500); //every 1.5 seconds
     document.addEventListener("keydown", moveBird);
+    document.addEventListener("click", moveBird);
 }
 
 function update() {
@@ -92,7 +93,7 @@ function update() {
             score += 0.5; //0.5 because there are 2 pipes! so 0.5*2 = 1, 1 for each set of pipes
             pipe.passed = true;
             // Create an audio element
-            const audio = new Audio('nurettin.wav');
+            const audio = new Audio('NurettinVoice.wav');
 
             // Play the audio
             audio.play();
@@ -152,7 +153,7 @@ function placePipes() {
 }
 
 function moveBird(e) {
-    if (e.code == "Space" || e.code == "ArrowUp" || e.code == "KeyX") {
+    if (e.type === "click") {
         //jump
         velocityY = -6;
 
@@ -165,6 +166,20 @@ function moveBird(e) {
         }
     }
 }
+// function moveBird(e) {
+//     if (e.code == "Space" || e.code == "ArrowUp" || e.code == "KeyX") {
+//         //jump
+//         velocityY = -6;
+//
+//         //reset game
+//         if (gameOver) {
+//             bird.y = birdY;
+//             pipeArray = [];
+//             score = 0;
+//             gameOver = false;
+//         }
+//     }
+// }
 
 function detectCollision(a, b) {
     return a.x < b.x + b.width &&   //a's top left corner doesn't reach b's top right corner
